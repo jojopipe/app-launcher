@@ -4,5 +4,8 @@ RAYLIB_FLAGS = -lraylib -DRAYGUI_IMPLEMENTATION -lGL -lm -lpthread -ldl -lrt -lX
 
 all: app-launcher
 
-app-launcher: main.c
-	$(CC) $(CFLAGS) $(RAYLIB_FLAGS) *.c -o app-launcher
+app-launcher: main.o
+	$(CC) $(CFLAGS) $(RAYLIB_FLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -o $@ -c $^
